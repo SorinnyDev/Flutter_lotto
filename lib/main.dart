@@ -55,20 +55,75 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text("로또 겟차"),
       ),
-      body: Center(
-        child: ListView.separated(
-          padding: EdgeInsets.all(8),
-          itemCount: list_lotto.length,
-            itemBuilder: (context, index) {
-              return Container(
-                child: Text(list_lotto[index].toString()),
-              );
-            },
-            separatorBuilder: (context, index) {
-              return Divider();
-            },
-
+      body: Container(
+        child: Stack(
+          children: <Widget>[
+            Center(
+                child: ClipOval(
+                  child: Container(
+                    color: Colors.grey,
+                    height: 150.0, // height of the button
+                    width: 150.0, // width of the button
+                  ),
+                )),
+            Center(
+                child: ClipOval(
+                    child: Container(
+                      //color: Colors.green,
+                      height: 120.0, // height of the button
+                      width: 120.0, // width of the button
+                      decoration: BoxDecoration(
+                          color: Colors.green,
+                          border: Border.all(
+                              color: Colors.white,
+                              width: 10.0,
+                              style: BorderStyle.solid),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey,
+                                offset: Offset(21.0, 10.0),
+                                blurRadius: 20.0,
+                                spreadRadius: 40.0)
+                          ],
+                          shape: BoxShape.circle),
+                      child: Center(
+                          child: Text('START',
+                              style:
+                              TextStyle(color: Colors.white.withOpacity(0.6)))),
+                    ),
+                  ),
+                ),
+          ],
         ),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // ListView.separated(
+        //   padding: EdgeInsets.all(8),
+        //   itemCount: list_lotto.length,
+        //     itemBuilder: (context, index) {
+        //       return Container(
+        //         child: Text(list_lotto[index].toString()),
+        //       );
+        //     },
+        //     separatorBuilder: (context, index) {
+        //       return Divider();
+        //     },
+        //
+        // ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _addLotto,
