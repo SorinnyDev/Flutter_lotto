@@ -55,81 +55,73 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text("로또 겟차"),
       ),
-      body: Container(
-        child: Stack(
-          children: <Widget>[
-            Center(
-                child: ClipOval(
-                  child: Container(
-                    color: Colors.grey,
-                    height: 150.0, // height of the button
-                    width: 150.0, // width of the button
-                  ),
-                )),
-            Center(
-                child: ClipOval(
-                    child: Container(
-                      //color: Colors.green,
-                      height: 120.0, // height of the button
-                      width: 120.0, // width of the button
-                      decoration: BoxDecoration(
-                          color: Colors.green,
-                          border: Border.all(
-                              color: Colors.white,
-                              width: 10.0,
-                              style: BorderStyle.solid),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.grey,
-                                offset: Offset(21.0, 10.0),
-                                blurRadius: 20.0,
-                                spreadRadius: 40.0)
-                          ],
-                          shape: BoxShape.circle),
-                      child: Center(
-                          child: Text('START',
-                              style:
-                              TextStyle(color: Colors.white.withOpacity(0.6)))),
-                    ),
-                  ),
-                ),
-          ],
-        ),
+      body: ListView.separated(
+              padding: EdgeInsets.all(8),
+              itemCount: list_lotto.length,
+                itemBuilder: (context, index) {
+                  return getNumToImg2(list_lotto[index]);
+                },
+                separatorBuilder: (context, index) {
+                  return Divider();
+                },
+            ),
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // ListView.separated(
-        //   padding: EdgeInsets.all(8),
-        //   itemCount: list_lotto.length,
-        //     itemBuilder: (context, index) {
-        //       return Container(
-        //         child: Text(list_lotto[index].toString()),
-        //       );
-        //     },
-        //     separatorBuilder: (context, index) {
-        //       return Divider();
-        //     },
-        //
-        // ),
-      ),
       floatingActionButton: FloatingActionButton(
         onPressed: _addLotto,
         tooltip: '로또번호 생성',
         child: Icon(Icons.refresh),
       ),
     );
+  }
+
+  Widget getNumToImg2 (List<int> list_lotto) {
+
+    int whileIndex = 0;
+
+    return Container(
+      child: Text("${list_lotto.length}"),
+    );
+  }
+
+
+  List<Widget> getNumToImg (List<int> list_lotto) {
+    List<Widget> list_lotto_img = [];
+
+    int whileIndex = 0;
+    while(whileIndex < list_lotto.length){
+
+      list_lotto_img[whileIndex] = Container(
+        width: 100,
+        height: 100,
+        decoration: BoxDecoration(
+          color: Colors.black.withOpacity(0.25), // border color
+          shape: BoxShape.circle,
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(2), // border width
+          child: Container(
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.red, // inner circle color
+            ),
+            child: Container(
+                width: 70,
+                height: 70,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: Colors.green, // border color
+                  shape: BoxShape.circle,
+                ),
+                child: Container(
+                  child: Text(list_lotto[whileIndex].toString(), style: TextStyle(color: Colors.white),),)
+            ),
+          ),
+        ),
+      );
+      whileIndex ++;
+    }
+
+    return list_lotto_img;
   }
 }
