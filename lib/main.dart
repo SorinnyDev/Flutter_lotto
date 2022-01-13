@@ -58,12 +58,12 @@ class _MyHomePageState extends State<MyHomePage> {
       body: ListView.separated(
               padding: EdgeInsets.all(8),
               itemCount: list_lotto.length,
-                itemBuilder: (context, index) {
-                  return getNumToImg2(list_lotto[index]);
-                },
-                separatorBuilder: (context, index) {
-                  return Divider();
-                },
+              itemBuilder: (context, index) {
+                return getNumToImg2(list_lotto[index]);
+              },
+              separatorBuilder: (context, index) {
+                return Divider();
+              },
             ),
 
       floatingActionButton: FloatingActionButton(
@@ -74,13 +74,47 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget getNumToImg2 (List<int> list_lotto) {
+  List<Widget> getNumToImg2 (List<int> list_lotto) {
 
     int whileIndex = 0;
 
-    return Container(
-      child: Text("${list_lotto.length}"),
-    );
+    List<Widget> list_lotto_img = [];
+
+    while(whileIndex < list_lotto.length){
+      Container(
+        width: 100,
+        height: 100,
+        decoration: BoxDecoration(
+          color: Colors.black.withOpacity(0.25), // border color
+          shape: BoxShape.circle,
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(2), // border width
+          child: Container(
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.red, // inner circle color
+            ),
+            child: Container(
+                width: 70,
+                height: 70,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: Colors.green, // border color
+                  shape: BoxShape.circle,
+                ),
+                child: Container(
+                  child: Text(list_lotto[whileIndex].toString(), style: TextStyle(color: Colors.white),),)
+            ),
+          ),
+        ),
+      );
+      whileIndex ++;
+    }
+
+    return list_lotto_img;
+
   }
 
 
