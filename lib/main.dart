@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import '';
 
 void main() {
   runApp(const MyApp());
@@ -29,6 +30,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
   List<List<int>> list_lotto = [];
 
   void _addLotto() {
@@ -49,26 +51,68 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Text("로또 겟차"),
       ),
       body: ListView.separated(
-        padding: EdgeInsets.all(8),
-        itemCount: list_lotto.length,
-        itemBuilder: (context, index) {
-          return Row(
+          padding: EdgeInsets.all(8),
+          reverse: false,
+          itemCount: list_lotto.length,
+          itemBuilder: (context, index) {
+            return getNumToImg2(list_lotto[index]);
+          },
+          separatorBuilder: (context, index) {
+            return Divider();
+          },
+        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _addLotto,
+        tooltip: '로또번호 생성',
+        child: Icon(Icons.refresh),
+      ),
+    );
+  }
+
+
+
+  Widget getNumToImg2(List<int> list_lotto){
+
+    // 1번부터 10번까지는 노란색입니다.
+    // 11번 부터 20번까지는 파란색입니다.
+    // 21번부터 30번까지는 빨간색입니다.
+    // 31번부터 40번까지는 검은색입니다.
+    // 41번부터 45번까지는 초록색입니다.
+
+    Color ball_color = Colors.blue;
+    int ball_num = 0;
+
+    return Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ...list_lotto[index].map(
+              ...list_lotto.map(
                 (e) {
+
+                  if(e <= 10){
+                    ball_color = Colors.yellow;
+                  }else if(e > 10 && e <= 20 ){
+                    ball_color = Colors.blue;
+                  }else if(e > 20 && e <= 30 ){
+                    ball_color = Colors.red;
+                  }else if(e > 30 && e <= 40 ){
+                    ball_color = Colors.black;
+                  }else if(e > 40 && e <= 45 ){
+                    ball_color = Colors.green;
+                  }
+
                   return Container(
                     width: 40,
                     height: 40,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.blue,
+                      color: ball_color,
                     ),
                     child: Text(
                       "${e}",
@@ -81,63 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
               )
             ],
           );
-          // return Container(child: Text("${list_lotto[index]}"),);
-        },
-        separatorBuilder: (context, index) {
-          return Divider();
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _addLotto,
-        tooltip: '로또번호 생성',
-        child: Icon(Icons.refresh),
-      ),
-    );
   }
-
-  // Widget getNumToImg2 (List<int> list_lotto) {
-  //
-  //   int whileIndex = 0;
-  //
-  //   List<Widget> list_lotto_img = [];
-  //
-  //   while(whileIndex < list_lotto.length){
-  //     Container(
-  //       width: 100,
-  //       height: 100,
-  //       decoration: BoxDecoration(
-  //         color: Colors.black.withOpacity(0.25), // border color
-  //         shape: BoxShape.circle,
-  //       ),
-  //       child: Padding(
-  //         padding: EdgeInsets.all(2), // border width
-  //         child: Container(
-  //           alignment: Alignment.center,
-  //           decoration: BoxDecoration(
-  //             shape: BoxShape.circle,
-  //             color: Colors.red, // inner circle color
-  //           ),
-  //           child: Container(
-  //               width: 70,
-  //               height: 70,
-  //               alignment: Alignment.center,
-  //               decoration: BoxDecoration(
-  //                 color: Colors.green, // border color
-  //                 shape: BoxShape.circle,
-  //               ),
-  //               child: Container(
-  //                 child: Text(list_lotto[whileIndex].toString(), style: TextStyle(color: Colors.white),),)
-  //           ),
-  //         ),
-  //       ),
-  //     );
-  //     whileIndex ++;
-  //   }
-  //   return Container(
-  //     child: Text("${list_lotto.length}"),
-  //   );
-  //
-  // }
 
   List<Widget> getNumToImg(List<int> list_lotto) {
     List<Widget> list_lotto_img = [];
