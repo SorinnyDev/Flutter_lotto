@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import '';
+import 'package:simple_shadow/simple_shadow.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: '',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
@@ -66,6 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
           separatorBuilder: (context, index) {
             return Divider();
           },
+
         ),
       floatingActionButton: FloatingActionButton(
         onPressed: _addLotto,
@@ -89,11 +90,10 @@ class _MyHomePageState extends State<MyHomePage> {
     int ball_num = 0;
 
     return Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               ...list_lotto.map(
                 (e) {
-
                   if(e <= 10){
                     ball_color = Colors.yellow;
                   }else if(e > 10 && e <= 20 ){
@@ -106,23 +106,50 @@ class _MyHomePageState extends State<MyHomePage> {
                     ball_color = Colors.green;
                   }
 
-                  return Container(
-                    width: 40,
-                    height: 40,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: ball_color,
-                    ),
-                    child: Text(
-                      "${e}",
-                      style: TextStyle(
-                        color: Colors.white,
+                  return SimpleShadow(
+                    opacity: 1,         // Default: 0.5
+                    color: Colors.grey,   // Default: Black
+                    offset: Offset(0, 0), // Default: Offset(2, 2)
+                    sigma: 4,             // Default: 2
+                    child: Container(
+                      width: 40,
+                      height: 40,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: ball_color,
                       ),
-                    ),
+                      child: SimpleShadow(
+                        child: Text(
+                          "${e}",
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                        opacity: 1,         // Default: 0.5
+                        color: Colors.black,   // Default: Black
+                        offset: Offset(0, 0), // Default: Offset(2, 2)
+                        sigma: 4,             // Default: 2
+                      ),
+                    )
                   );
-                },
-              )
+                    },
+              ),
+              Container(
+                width: 60,
+                margin: EdgeInsets.only(left: 20),
+                child: ElevatedButton(
+                  onPressed: (){ print("버튼눌림");},
+                  child: const Text("번호 저장",
+                        style: TextStyle(fontSize: 10,),
+                        textAlign: TextAlign.center
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.deepPurple, // background
+                    onPrimary: Colors.white, // foreground
+                  ),
+                ),
+              ),
             ],
           );
   }
