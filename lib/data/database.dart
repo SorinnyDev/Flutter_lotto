@@ -32,30 +32,52 @@ class DatabaseHelper {
     CREATE TABLE IF NOT EXISTS $lottoTable (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       date INTEGER DEFAULT 0,
-      title String,
-      memo String,
-      color INTEGER,
-      done INTEGER,
-      category String
+      numbers String
     )
     ''');
   }
 
   Future _onUpgrade(Database db, int oldVersion, int newVersion) async {}
-    //투도 입력, 수정, 불러오기
+    //입력, 수정, 불러오기
 
   Future<int> insertLotto(Lotto lotto) async {
     Database? db = await instance.database;
 
       Map<String, dynamic> row = {
-        "title" : lotto.title,
         "date" : lotto.date,
-        "memo" : lotto.memo,
-        "color" : lotto.color,
-        "done" : lotto.done,
-        "category" : lotto.category
+        "numbers" : lotto.numbers,
       };
 
       return await db!.insert(lottoTable, row);
+  }
+
+
+  Future deleteLotto(Lotto lotto) async {
+    Database? db = await instance.database;
+
+    return await db!.delete(lottoTable, where: "id = ?", whereArgs: [lotto.id]);
+  }
+
+  Future getAllLotto(Lotto lotto) async {
+    Database? db = await instance.database;
+
+    List<Lotto> lottos = [];
+
+    var queries = null;
+    queries = await db!.query(lottoTable);
+
+    for(var q in queries) {
+      lottos.add ( Lotto(
+          id: q["id"],
+          numbers: q["numbers"],
+          date: q["date"],
+      ));
     }
+
+    return lottos;
+  }
+
+
+
+
   }

@@ -1,20 +1,12 @@
 
 class Lotto {
-  String title;
-  String memo;
-  String category;
-  int color;
-  int? done;
-  int date;
   int? id;
+  String numbers;
+  int date;
 
   Lotto({
-    required this.title,
-    required this.memo,
-    required this.category,
-    required this.color,
-    this.done,
+    this.id,
+    required this.numbers,
     required this.date,
-    this.id
   });
 }

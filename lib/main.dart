@@ -2,6 +2,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:simple_shadow/simple_shadow.dart';
 
+import 'data/database.dart';
+import 'data/lotto.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -30,6 +33,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  final dbHelper = DatabaseHelper.instance;
 
   List<List<int>> list_lotto = [];
 
@@ -139,7 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 width: 60,
                 margin: EdgeInsets.only(left: 20),
                 child: ElevatedButton(
-                  onPressed: (){ print("버튼눌림");},
+                  onPressed: () => getNumbers(list_lotto),
                   child: const Text("번호 저장",
                         style: TextStyle(fontSize: 10,),
                         textAlign: TextAlign.center
@@ -195,5 +200,11 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
     return list_lotto_img;
+  }
+
+  getNumbers(List<int> list_lotto){
+    print("저장버튼 눌렷드아아아아");
+    print("numbers : ${list_lotto}");
+    print("numbers : ${list_lotto[0]}");
   }
 }
