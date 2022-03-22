@@ -1,3 +1,5 @@
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter/material.dart';
 
 class Utils {
 
@@ -18,5 +20,14 @@ class Utils {
     int day = int.parse(_d.substring(6,8));
 
     return DateTime(year, month, day);
+  }
+
+  static showToast(String message) {
+    Fluttertoast.showToast(
+        msg: message,
+        backgroundColor: Colors.grey,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM
+    );
   }
 }

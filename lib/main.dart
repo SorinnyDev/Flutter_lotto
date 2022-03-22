@@ -4,6 +4,7 @@ import 'package:simple_shadow/simple_shadow.dart';
 
 import 'data/database.dart';
 import 'data/lotto.dart';
+import 'data/util.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       title: '',
       debugShowCheckedModeBanner: false,
@@ -54,6 +56,18 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _tableDrop() {
+    //드랍 테이블
+    dbHelper.dropTable('getchaLotto');
+    print("드랍 테이블");
+
+    super.setState(() {
+
+      list_lotto = [];
+
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -73,11 +87,33 @@ class _MyHomePageState extends State<MyHomePage> {
           },
 
         ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _addLotto,
-        tooltip: '로또번호 생성',
-        child: Icon(Icons.refresh),
+      floatingActionButton: Stack (
+        children: <Widget>[
+
+          Align(
+            alignment: Alignment(Alignment.bottomRight.x, Alignment.bottomRight.y - 0.4),
+            child: FloatingActionButton(
+              onPressed: _tableDrop,
+              tooltip: '테이블 드랍',
+              child: Icon(Icons.delete),
+            ),
+          ),
+          Align(
+            alignment: Alignment(Alignment.bottomRight.x, Alignment.bottomRight.y - 0.2),
+            child: FloatingActionButton(
+              onPressed: _addLotto,
+              tooltip: '로또번호 생성',
+              child: Icon(Icons.create),
+            ),
+          ),
+        ],
       ),
+
+
+
+
+
+
     );
   }
 
@@ -202,9 +238,20 @@ class _MyHomePageState extends State<MyHomePage> {
     return list_lotto_img;
   }
 
-  getNumbers(List<int> list_lotto){
+  getNumbers(List<int> list_lotto) async{
+
     print("저장버튼 눌렷드아아아아");
     print("numbers : ${list_lotto}");
-    print("numbers : ${list_lotto[0]}");
+    String strarry = list_lotto.join(",");
+
+    var insertResult = await dbHelper.insertLotto(Lotto(numbers: strarry));
+
+    List allLotto = await dbHelper.getAllLotto();
+    print(allLotto.length);
+
+    await Utils.showToast('토스트 테스트');
+
+
+
   }
 }
