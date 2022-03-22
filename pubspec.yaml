@@ -39,6 +39,7 @@ dependencies:
   path:
   intl: ^0.17.0
   fluttertoast: ^8.0.9
+  circular_bottom_navigation: ^2.0.0
 
 dev_dependencies:
   flutter_test:
