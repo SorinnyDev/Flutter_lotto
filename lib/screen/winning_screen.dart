@@ -8,8 +8,6 @@ import 'package:lotto/data/database.dart';
 
 import 'package:simple_shadow/simple_shadow.dart';
 
-import 'package:circular_bottom_navigation/circular_bottom_navigation.dart';
-import 'package:circular_bottom_navigation/tab_item.dart';
 
 class WinningScreen extends StatefulWidget {
   const WinningScreen({Key? key}) : super(key: key);
