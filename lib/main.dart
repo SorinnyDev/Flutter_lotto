@@ -70,43 +70,21 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Stack(
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(bottom: bottomNavBarHeight),
-              child: bodyContainer(),
-            ),
-            Align(alignment: Alignment.bottomCenter, child: bottomNav()),
-          ],
-        ),
 
-        /*
-        번호 생성 버튼
-        floatingActionButton: Stack (
-          children: <Widget>[
-            Align(
-              alignment: Alignment(Alignment.bottomRight.x, Alignment.bottomRight.y - 0.4),
-              child: FloatingActionButton(
-                onPressed: _tableDrop,
-                tooltip: '테이블 드랍',
-                child: Icon(Icons.delete),
-              ),
+  return SafeArea(
+          child: Scaffold(
+            body: Stack(
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(bottom: bottomNavBarHeight),
+                  child: bodyContainer(),
+                ),
+                Align(alignment: Alignment.bottomCenter, child: bottomNav()),
+              ],
             ),
-            Align(
-              alignment: Alignment(Alignment.bottomRight.x, Alignment.bottomRight.y - 0.2),
-              child: FloatingActionButton(
-                onPressed: _addLotto,
-                tooltip: '로또번호 생성',
-                child: Icon(Icons.create),
-              ),
-            ),
-          ],
-        ),
-         */
-      ),
-    );
+          ),
+        );
+
   }
 
   Widget bodyContainer() {

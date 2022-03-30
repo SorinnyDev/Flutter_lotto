@@ -1,0 +1,31 @@
+flutter_native_splash:
+  #color: "#271f99"
+  color: "#ffffff"
+  #background_image: "assets/background.png"
+  image: assets/splash.png
+
+
+#  color_dark: "#042a49"
+#  #background_image_dark: "assets/dark-background.png"
+#  image_dark: assets/splash-invert.png
+
+
+#flutter_native_splash 패키지는 다양한 옵션을 가지고 있습니다
+#color: 스플래시 스크린의 배경색
+#background_image: 스플래시 스크린의 배경 이미지
+#image: 스플래시 스크린의 이미지
+#color_dark: 디바이스 설정이 다크 모드일 경우의 배경색
+#background_image_dark: 디바이스 설정이 다크 모드일 경우의 배경 이미지
+#image_dark: 디바이스 설정이 다크 모드일 경우의 스플래시 스크린 이미지
+#android_gravity: 안드로이드에서 스플래시 이미지의 위치를 설정합니다. (bottom, center, center_horizontal, center_vertical, clip_horizontal, clip_vertical, end, fill, fill_horizontal, fill_vertical, left, right, start, top)
+#ios_content_mode: iOS에서 스플래시 이미지의 위치를 설정합니다. (scaleToFill, scaleAspectFit, scaleAspectFill, center, top, bottom, left, right, topLeft, topRight, bottomLeft, bottomRight)
+#web_image_mode: 웹에서 스플래시 이미지의 위치를 설정합니다. (center, contain, stretch, cover)
+#fullscreen: 스플래시 스크린을 전체 화면으로 표시할지 여부(true, false)
+#info_plist_files: info.plist 이름을 변경한 경우, 해당 파일을 설정하기 위한 옵션
+
+
+## 스플래시 업데이트 마다 remove -> create
+#### flutter pub run flutter_native_splash:create
+#### flutter pub run flutter_native_splash:remove
+
+## 이미지 크키는 3000px x 3000px
