@@ -13,11 +13,11 @@ class MoreScreen extends StatefulWidget {
 
 class _MoreScreen extends State<MoreScreen> {
   PackageInfo _packageInfo = PackageInfo(
-    appName: 'Unknown',
-    packageName: 'Unknown',
-    version: 'Unknown',
-    buildNumber: 'Unknown',
-    buildSignature: 'Unknown',
+    appName: '',
+    packageName: '',
+    version: '',
+    buildNumber: '',
+    buildSignature: '',
   );
 
   @override

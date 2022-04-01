@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lotto/screen/camera_screen.dart';
+import 'package:lotto/screen/winning_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -31,37 +33,46 @@ class _HomeScreen extends State<HomeScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
-                child: Column(
-                  children: [
-                    Text(
-                      '2022.03.26',
-                      style: TextStyle(
-                        fontSize: 22,
-                          color: Colors.grey),
-                    ),
-                    RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                              text: '1008회 당첨번호 ',
-                              style: TextStyle(
-                                fontSize: 22,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold)),
-                          WidgetSpan(
-                            alignment: PlaceholderAlignment.middle,
-                            child: Icon(
-                              Icons.arrow_drop_down,
-                              color: Colors.white,
-                              size: 30,
-                            ),
-                          )
-                        ],
+              InkWell(
+                onTap: (){
+                  print('당첨 번호클릭');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => WinningScreen()),
+                  );
+                },
+                child: Container(
+                  child: Column(
+                    children: [
+                      Text(
+                        '2022.03.26',
+                        style: TextStyle(
+                          fontSize: 22,
+                            color: Colors.grey),
                       ),
-                    ),
-                  ],
+                      RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                                text: '1008회 당첨번호 ',
+                                style: TextStyle(
+                                  fontSize: 22,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold)),
+                            WidgetSpan(
+                              alignment: PlaceholderAlignment.middle,
+                              child: Icon(
+                                Icons.arrow_drop_down,
+                                color: Colors.white,
+                                size: 30,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Container(
@@ -290,26 +301,35 @@ class _HomeScreen extends State<HomeScreen> {
                   ],
                 ),
               ),
-              Container(
-                margin: EdgeInsets.only(top: 10),
-                child: Align(
-                  alignment: Alignment.bottomRight,
-                  child: RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                            text: "간편 확인  ",
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.white)),
-                        WidgetSpan(
-                          child: Icon(
-                            Icons.qr_code_scanner_rounded,
-                            color: Colors.white,
-                          ),
-                        )
-                      ],
+              InkWell(
+                onTap: (){
+                  print("간편확인");
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CameraScreen()),
+                  );
+                },
+                child: Container(
+                  margin: EdgeInsets.only(top: 10),
+                  child: Align(
+                    alignment: Alignment.bottomRight,
+                    child: RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                              text: "간편 확인  ",
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white)),
+                          WidgetSpan(
+                            child: Icon(
+                              Icons.qr_code_scanner_rounded,
+                              color: Colors.white,
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
